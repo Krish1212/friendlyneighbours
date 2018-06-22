@@ -1,33 +1,44 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>Login</ion-title>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content padding>
-  <form [formGroup]="loginForm" novalidate>
-    <ion-item>
-      <ion-label stacked>Email</ion-label>
-      <ion-input #username formControlName="username" type="email" [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.touched"></ion-input>
-    </ion-item>
-    <ion-item no-lines class="error-message" *ngIf="loginForm.controls.username.hasError('required') && loginForm.controls.username.touched">
-      Email field is required
-    </ion-item>
-    <ion-item no-lines class="error-message" *ngIf="!loginForm.controls.username.valid && loginForm.controls.username.touched">
-      Please enter a valid email
-    </ion-item>
-    <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input #password formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.touched"></ion-input>
-    </ion-item>
-    <ion-item no-lines class="error-message" *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
-      Password field is required
-    </ion-item>
-    <ion-item no-lines class="error-message" *ngIf="loginForm.controls.password.hasError('minLength') && loginForm.controls.password.touched">
-      Password should be 6 characters long
-    </ion-item>
-    <button ion-button block (click)="login()" type="submit">Login</button>
-    <button ion-button block outline (click)="register()">New user? Register</button>
-  </form>
+<ion-content class="background">
+  <h1>Friendly Neighbours</h1>
+  <ion-card>
+    <ion-card-header>
+      LOGIN FORM
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="loginForm" novalidate>
+        <ion-list no-lines>
+          <ion-item>
+            <ion-label stacked>Email</ion-label>
+            <ion-input #username formControlName="username" type="email" [class.invalid]="!loginForm.controls.username.valid && loginForm.controls.username.touched"></ion-input>
+          </ion-item>
+          <ion-item no-lines class="error-message" *ngIf="loginForm.controls.username.hasError('required') && loginForm.controls.username.touched">
+            Email field is required
+          </ion-item>
+          <ion-item no-lines class="error-message" *ngIf="!loginForm.controls.username.valid && loginForm.controls.username.touched">
+            Please enter a valid email
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input #password formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.touched"></ion-input>
+          </ion-item>
+          <ion-item no-lines class="error-message" *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+            Password field is required
+          </ion-item>
+          <ion-item no-lines class="error-message" *ngIf="loginForm.controls.password.hasError('minLength') && loginForm.controls.password.touched">
+            Password should be 6 characters long
+          </ion-item>
+          <ion-buttons>
+            <button ion-button block (click)="login()" type="submit">Login</button>
+            <button ion-button block outline (click)="register()">New user? Register</button>
+          </ion-buttons>
+        </ion-list>
+      </form>
+      <b>OR</b>
+      <ion-buttons>
+        <button color="dark" ion-button icon-only clear><ion-icon name="logo-facebook"></ion-icon></button>
+        <button color="dark" ion-button icon-only clear><ion-icon name="logo-google"></ion-icon></button>
+        <button color="dark" ion-button icon-only clear><ion-icon name="logo-twitter"></ion-icon></button>
+      </ion-buttons>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

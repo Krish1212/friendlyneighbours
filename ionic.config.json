@@ -1,6 +1,6 @@
 {
   "name": "friendlyneighbors",
-  "app_id": "",
+  "app_id": "d52e3c8f",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

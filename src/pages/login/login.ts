@@ -50,7 +50,7 @@ export class LoginPage {
           this.loading.dismiss().then(() => {
             //console.log(_user_);
             console.log(_profile_);
-            this.navCtrl.setRoot(HomePage);
+            this.navCtrl.setRoot(HomePage, {'user':_user_, 'profile':_profile_});
           });
         }, _exp_ => {
           console.error(_exp_.message);

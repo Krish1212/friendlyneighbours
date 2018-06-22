@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { FireAuthProvider } from '../../providers/fire-auth/fire-auth';
 import { LoginPage } from '../login/login';
@@ -9,9 +9,13 @@ import { LoginPage } from '../login/login';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  constructor(public navCtrl: NavController, private afAuth:FireAuthProvider) {
-
+  currentUser:any;
+  currUserProfile:any;
+  constructor(public navCtrl: NavController, 
+    private navParams:NavParams, 
+    private afAuth:FireAuthProvider) {
+    this.currentUser = this.navParams.get('user');
+    this.currUserProfile = this.navParams.get('profile');
   }
   signout(){
     this.afAuth.logoutUser().then(() => {
