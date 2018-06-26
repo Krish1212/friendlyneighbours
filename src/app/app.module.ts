@@ -13,6 +13,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 
 import { ENVIRONMENT } from './config/environment';
+import { Facebook } from '@ionic-native/facebook';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,6 +46,7 @@ import { FireStoreProvider } from '../providers/fire-store/fire-store';
   providers: [
     StatusBar,
     SplashScreen,
+    Facebook,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FireAuthProvider,
     FireStoreProvider

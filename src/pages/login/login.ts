@@ -54,15 +54,58 @@ export class LoginPage {
           });
         }, _exp_ => {
           console.error(_exp_.message);
+          this.loading.dismiss().then(() => {
+            this.alertCtrl.create({
+              message:'ERROR: ' + _exp_.message + '!!',
+              buttons: [{
+                text:'Ok',
+                role:'cancel'
+              }]
+            }).present();
+          });
         });
       }).catch(_e_ => {
         console.error(_e_.message);
+        this.loading.dismiss().then(() => {
+          if(_e_.code == 'auth/user-not-found'){
+            this.alertCtrl.create({
+              message:'User not found. Please register to login',
+              buttons: [{
+                text:'Ok',
+                role:'cancel'
+              }]
+            }).present();              
+          } else if(_e_.code == 'auth/network-request-failed') {
+            this.alertCtrl.create({
+              message:_e_.message,
+              buttons: [{
+                text:'Ok',
+                role:'cancel'
+              }]
+            }).present();
+          }
+        });
       });
     }
     this.loading.present();
   }
   register(){
     this.navCtrl.setRoot(RegisterPage);
+  }
+  socialLogin(provider:string){
+    switch(provider){
+      case 'fb':
+        this.afAuth.facebookLogin().then(_user_ => {
+          console.log(_user_);
+        }).catch(_e_ => {
+          console.error(_e_);
+        });
+      break;
+      case 'google':
+      break;
+      case 'twitter':
+      break;
+    }
   }
 
 }

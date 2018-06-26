@@ -28,16 +28,16 @@
             Password should be 6 characters long
           </ion-item>
           <ion-buttons>
-            <button ion-button block (click)="login()" type="submit">Login</button>
+            <button ion-button block (click)="login()" type="submit" [disabled]="!loginForm.valid">Login</button>
             <button ion-button block outline (click)="register()">New user? Register</button>
           </ion-buttons>
         </ion-list>
       </form>
       <b>OR</b>
       <ion-buttons>
-        <button color="dark" ion-button icon-only clear><ion-icon name="logo-facebook"></ion-icon></button>
-        <button color="dark" ion-button icon-only clear><ion-icon name="logo-google"></ion-icon></button>
-        <button color="dark" ion-button icon-only clear><ion-icon name="logo-twitter"></ion-icon></button>
+        <button color="dark" ion-button icon-only clear (click)="socialLogin(fb)"><ion-icon name="logo-facebook"></ion-icon></button>
+        <button color="dark" ion-button icon-only clear (click)="socialLogin(google)"><ion-icon name="logo-google"></ion-icon></button>
+        <button color="dark" ion-button icon-only clear (click)="socialLogin(twitter)"><ion-icon name="logo-twitter"></ion-icon></button>
       </ion-buttons>
     </ion-card-content>
   </ion-card>
