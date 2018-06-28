@@ -97,13 +97,25 @@ export class LoginPage {
       case 'fb':
         this.afAuth.facebookLogin().then(_user_ => {
           console.log(_user_);
+          //console.log(_user_.profile);
+          //this.navCtrl.setRoot(HomePage, {'user':_user_.,'profile':})
         }).catch(_e_ => {
-          console.error(_e_);
+          console.error(_e_.message);
         });
       break;
       case 'google':
+        this.afAuth.googleLogin().then(_user_ => {
+          console.log(_user_);
+        }).catch(_e_ => {
+          console.error(_e_.message);
+        });
       break;
       case 'twitter':
+        this.afAuth.twitterLogin().then(_user_ => {
+          console.log(_user_);
+        }).catch(_e_ => {
+          console.error(_e_.message);
+        });
       break;
     }
   }
