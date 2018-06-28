@@ -106,6 +106,7 @@ export class LoginPage {
       case 'google':
         this.afAuth.googleLogin().then(_user_ => {
           console.log(_user_);
+          this.navCtrl.setRoot(HomePage, {'user':_user_,'profile':_user_.additionalUserInfo.profile})
         }).catch(_e_ => {
           console.error(_e_.message);
         });
