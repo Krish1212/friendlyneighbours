@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
-
+import { Platform } from 'ionic-angular';
+import { Facebook } from '@ionic-native/facebook';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from '@firebase/app';
 
 @Injectable()
 export class FireAuthProvider {
 
-  constructor(private afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, 
+    private pf:Platform, 
+    private fb:Facebook) {
       
     }
 
@@ -20,7 +23,18 @@ export class FireAuthProvider {
     return this.afAuth.auth.signOut();
   }
   facebookLogin():Promise<any> {
-    return this.afAuth.auth.signInWithPopup(new firebase.firebase.auth.FacebookAuthProvider());
+    if(this.pf.is('cordova')){
+      return this.fb.login(['email','public_profile']).then(res => {
+        const credential = firebase.firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        this.afAuth.auth.signInWithCredential(credential).then(fbUser => {
+          return fbUser;
+        }).catch(err => {
+          return err;
+        });
+      });
+    } else {
+      return this.afAuth.auth.signInWithPopup(new firebase.firebase.auth.FacebookAuthProvider());
+    }
   }
   googleLogin():Promise<any> {
     return this.afAuth.auth.signInWithPopup(new firebase.firebase.auth.GoogleAuthProvider());
